@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/jindra/.vim'
+let g:netrw_dirhist_2='/home/jindra/Desktop/prase B O Y S/1-7'
+let g:netrw_dirhist_3='/home/jindra/DvojkarkyZpevnik/Písně dohromady'
+let g:netrw_dirhist_4='/home/jindra/Desktop/fykos/1Série/1-S'
+let g:netrw_dirhist_5='/home/jindra/Desktop/fykos/3-S'
+let g:netrw_dirhist_6='/home/jin/Desktop/Skautské programy/Schůzky'
+let g:netrw_dirhist_7='/home/jin/Desktop/Jindrovy programovací projekty/newdire'
+let g:netrw_dirhist_8='/home/jin/vyfuk7/problems'
+let g:netrw_dirhist_9='/home/jin/vyfuk7/batch4'
