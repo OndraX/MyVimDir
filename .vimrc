@@ -29,8 +29,13 @@ augroup END
 :noremap <C-R>e <esc>:so $MYVIMRC<CR>
 :noremap <C-Right> <esc>:tabn<CR>
 :noremap <C-Left> <esc>:tabp<CR>
-:noremap <C-w> <esc>:tabe ~/.vim
+":noremap <C-M> <esc>:tabe ~/.vim
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 :imap <Leader>b <CR><+1+><esc>,cci
 ":inoremap \uv  \uv{}<++><esc>4hi
 :inoremap <C-x>c <esc>d0i<del><BS>
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+nmap <silent> <C-Space> <C-W>++
