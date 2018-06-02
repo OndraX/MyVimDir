@@ -29,7 +29,6 @@ augroup END
 :noremap <C-R>e <esc>:so $MYVIMRC<CR>
 :noremap <C-Right> <esc>:tabn<CR>
 :noremap <C-Left> <esc>:tabp<CR>
-":noremap <C-M> <esc>:tabe ~/.vim
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 :imap <Leader>b <CR><+1+><esc>,cci
 ":inoremap \uv  \uv{}<++><esc>4hi
@@ -39,3 +38,18 @@ nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
 nmap <silent> <C-Space> <C-W>++
+:noremap <A-M> <esc>:tabe ~/.vim
+" omnifuncs
+augroup omnifuncs
+  autocmd!
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup end
+
+" tern
+  let g:tern_show_argument_hints = 'on_hold'
+  let g:tern_show_signature_in_pum = 1
+
+  autocmd FileType javascript setlocal omnifunc=tern#Complete
