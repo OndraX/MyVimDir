@@ -8,17 +8,20 @@
 "Convenient switching between buffers // instead of tabs
 :noremap <C-Right> <esc>:bnext<CR>
 :noremap <C-Left> <esc>:bprev<CR>
+:noremap <C-x> <esc>:bd<CR>
 "Searches word under cursor
 :nnoremap <Leader>s /\<<C-r><C-w>/>
 "Replaces word under cursor
 :nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 :imap <Leader>b <CR><+1+><esc>,cci
-":inoremap \uv  \uv{}<++><esc>4hi
-:inoremap <C-x>c <esc>d0i<del><BS>
+"":inoremap \uv  \uv{}<++><esc>4hi
+"delete line until beginning
+:inoremap <C-z> <esc>d0i<del><BS>
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
+
 " window split commands
 "  window
 nmap <leader>S<left>  :topleft  vnew<CR>
@@ -40,8 +43,11 @@ nmap <leader>s<down>   :rightbelow new<CR>
 ":noremap <C-s> :let g:split='horizontal'<CR>:Sex
 
 :noremap s<C-Down> <C-W>
-:noremap <A-M> <esc>:tabe ~/.vim
+:noremap \v :e ~/.vim
+:cmap q<CR> bd<CR>
+:cmap Q<Cr> bd<CR>
 
+:noremap <C-O>p <esc>:e
 "Insert mode maps
 :inoremap (( ()<++><esc>4hi
 :inoremap {{ {}<++><esc>4hi

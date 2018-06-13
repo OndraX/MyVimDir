@@ -1,6 +1,7 @@
+:autocmd! 
+:autocmd BufWritePost :!pdflatex =interaction=nonstopmode %
 "Ohledně Latex suite
 imap <buffer> ° <Plug>Tex_InsertItemOnThisLine
-
 
 "Česká jazyková makra 
 :inoremap zr<space><space> zrychlení
@@ -24,7 +25,7 @@ imap <buffer> ° <Plug>Tex_InsertItemOnThisLine
 :inoremap \ni \noindent
 :inoremap frac \frac{}{<+2+>}<++><esc>11hi
 :inoremap \enum \begin{itemize}<CR>\item{<++>}<CR>\end{itemize}<++><CR><esc>23hi
-:inoremap \i \item{}<++><esc>4hi
+:inoremap \it \item{}<++><esc>4hi
 "Kompilace
 :nnoremap \fvl :!fks-vlnka.sh % <CR>
 :nnoremap \vl :!vlna % <CR>
@@ -146,8 +147,8 @@ imap <buffer> ° <Plug>Tex_InsertItemOnThisLine
 :inoremap <space>\Om<space> <space>$\Omega $
 :inoremap <space>\La<space> <space>$\Lambda $
 
-:inoremap <C-i> \textit{}<++><esc>4hi
-:inoremap <C-b> \textbf{}<++><esc>4hi
-:inoremap <C-l> \underline{}<++><esc>4hi
-:inoremap <C-D> <esc>ddi
+:inoremap <leader>i \textit{}<++><esc>4hi
+:inoremap <leader>b \textbf{}<++><esc>4hi
+:inoremap <leader>l \underline{}<++><esc>4hi
+:inoremap <leader>d <esc>ddi
 "Todo: make work to italicise current word

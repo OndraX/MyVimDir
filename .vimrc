@@ -16,8 +16,12 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+"For faster xml-like syntax editing 
+:command! -nargs=1 Ms execute 'vimgrep /<args>/ **/*.' . expand('%:e')
+Plug 'othree/xml.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 "Pretty vim colour scheme
 Plug 'altercation/vim-colors-solarized'
@@ -49,12 +53,15 @@ Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-sensible'
 Plug 'w0rp/ale'
 Plug 'vim-latex/vim-latex'
-
+"Local vimrc
+Plug 'embear/vim-localvimrc'
+"HTML live editing
+Plug 'jaxbot/browserlink.vim'
 call plug#end()
 "Airline config
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline_theme = 'solarized'
+let g:airline_theme = 'base16'
 let g:airline_powerline_fonts = 1
 
 "Hotfixes
@@ -97,4 +104,13 @@ set t_Co=256
 let g:solarized_termcolors=256
 set background=light
 colorscheme solarized
+
+:nmap <leader>uv<CR> <esc>:%s/"\(.\{-}\)"/\\uv{\1}/g
+:nmap \dc<CR> <esc>:%s/\%TC\:ignore/\%__IGNORE__/g<CR>:%s/\%TC\:endignore/%__ENDIGNORE__/g
+:nmap \rc<CR> <esc>:%s/"\(.\{-}\)"/\\uv{\1}/g
+
+"Localvimrc anti-annoyment settings
+"
+let g:localvimrc_sandbox=0
+let g:localvimrc_ask=0
 
