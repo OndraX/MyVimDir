@@ -5,10 +5,7 @@
 :inoremap <C-Del> <esc><C-v>ed<esc>i
 "Reloads the .vimrc // consider AutoCmding
 :noremap <C-R>e <esc>:so $MYVIMRC<CR>
-"Convenient switching between buffers // instead of tabs
-:noremap <C-Right> <esc>:bnext<CR>
-:noremap <C-Left> <esc>:bprev<CR>
-:noremap <C-x> <esc>:bd<CR>
+
 "Searches word under cursor
 :nnoremap <Leader>s /\<<C-r><C-w>/>
 "Replaces word under cursor
@@ -17,10 +14,10 @@
 "":inoremap \uv  \uv{}<++><esc>4hi
 "delete line until beginning
 :inoremap <C-z> <esc>d0i<del><BS>
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
+nmap <silent> <C-Up> :wincmd k<CR>
+nmap <silent> <C-Down> :wincmd j<CR>
+nmap <silent> <C-Left> :wincmd h<CR>
+nmap <silent> <C-Right> :wincmd l<CR>
 
 " window split commands
 "  window
@@ -48,7 +45,24 @@ nmap <leader>s<down>   :rightbelow new<CR>
 :cmap Q<Cr> bd<CR>
 
 :noremap <C-O>p <esc>:e
+
+"Normal mode word, character, line replaces:
+"Source: http://vim.wikia.com/wiki/Swapping_characters,_words_and_lines
+
+:nnoremap <silent> gc xph
+:nnoremap <silent> gC Xph
+:nnoremap <silent> gw "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
+:nnoremap <silent> gl "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
+:nnoremap <silent> gr "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>:nohlsearch<CR>
+:nnoremap g{ {dap}p{
+
+
 "Insert mode maps
 :inoremap (( ()<++><esc>4hi
 :inoremap {{ {}<++><esc>4hi
 :inoremap [[ []<++><esc>4hi
+
+"Convenient switching between buffers // instead of tabs
+:noremap <esc><left> <esc>:bnext<CR>
+:noremap <esc><right> <esc>:bprev<CR>
+:noremap <C-x> <esc>:bd<CR>

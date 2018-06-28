@@ -2,19 +2,24 @@
 :autocmd BufWritePost :!pdflatex =interaction=nonstopmode %
 "Ohledně Latex suite
 imap <buffer> ° <Plug>Tex_InsertItemOnThisLine
-
-"Česká jazyková makra 
-:inoremap zr<space><space> zrychlení
-":inoremap ry<space><space> rychlost
-:inoremap pe<space><space> period
-:inoremap pů<space><space> působ
-
+:echom "Ftplugin loaded"
 "Fyzikální makra
 :inoremap \eu \mathrm{e}
 :inoremap \cc \mathrm{c}
 :inoremap \G \mathrm{G}
 :inoremap \ii \mathrm{i}
 :inoremap \jj \mathrm{j}
+
+:function! MakeEnv()
+let curline = getline('.')
+call inputsave()
+let name = input('Enter environment name:')
+call inputrestore()
+let lineone='\begin{' . name.'}'
+let linetwo='\end{'.name.'}'
+put =lineone
+put =linetwo
+:endfunction																	
 
 "Latex příkazy
 :inoremap \geometry \usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
@@ -26,14 +31,15 @@ imap <buffer> ° <Plug>Tex_InsertItemOnThisLine
 :inoremap frac \frac{}{<+2+>}<++><esc>11hi
 :inoremap \enum \begin{itemize}<CR>\item{<++>}<CR>\end{itemize}<++><CR><esc>23hi
 :inoremap \it \item{}<++><esc>4hi
+:inoremap \env <esc>:call MakeEnv()<CR><esc>O
+"TODO: extend to visual mode with current selection as argument / normal mode with word under cursor as argument
+
 "Kompilace
 :nnoremap \fvl :!fks-vlnka.sh % <CR>
 :nnoremap \vl :!vlna % <CR>
 :nnoremap \xl :!xelatex % <CR><CR>
 :nnoremap \kl :!pdflatex -interaction=nonstopmode % 
-
-"Newfile makra
-" memoir newfile fks article zapis
+:nnoremap \oe :!xdg-open %:r.pdf<CR> 
 :inoremap \newfile \documentclass[10pt,a4paper]{article}<CR>\usepackage[utf8]{inputenc}<CR>\usepackage[czech]{babel}<CR>\usepackage[T1]{fontenc}<CR>\usepackage{amsmath}<CR>\usepackage{amsfonts}<CR>\usepackage{amssymb}<CR>\usepackage{graphicx}<CR>\usepackage{lmodern}<CR>\begin{document}<CR><CR>\end{document}<esc>ki
 :inoremap \fks \documentclass{fkssolpub}<CR>\usepackage[utf8]{inputenc}<CR>\usepackage[T1]{fontenc}<CR>\usepackage{lmodern}<CR>\usepackage[czech]{babel}<CR>\usepackage{graphicx}<CR>\usepackage{fkssugar}<CR>\author{Jindřich Dušek}<CR>\school{Gymnázium Jana Keplera}<CR>\series{}<CR>\begin{document}<CR>\begin{problem}{<++>}<CR><++><CR>\end{problem}<CR>\end{document}<esc>5ki
 
@@ -47,105 +53,104 @@ imap <buffer> ° <Plug>Tex_InsertItemOnThisLine
 :inoremap \zapis \documentclass[10pt,a4paper]{article}<CR>\usepackage[utf8]{inputenc}<CR>\usepackage[czech]{babel}<CR>\usepackage[T1]{fontenc}<CR>\usepackage{amsmath}<CR>\usepackage{amsfonts}<CR>\usepackage{amssymb}<CR>\usepackage{amsthm}<CR>\usepackage{graphicx}\usepackage{lmodern}<CR>\usepackage[top = 2cm, bottom = 2cm, left = 2cm, right = 2cm]{geometry}<CR>\usepackage{lettrine}<CR>\usepackage{titlesec}<CR>\usepackage{fkssugar}<CR><CR>\usepackage{titling}<CR>\setlength{\droptitle}{-4\baselineskip}<CR>\pretitle{\begin{center}\huge\bfseries}<CR>\posttitle{\end{center}}<CR>\renewcommand\thesection{\Roman{section}}<CR>\renewcommand\thesubsection{\arabic{subsection}}<CR>\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{}<CR>\titleformat{\subsection}[block]{\bfseries \large}{\thesubsection.}{1em}{}<CR><CR>\usepackage{fancyhdr}<CR>\pagestyle{fancy}<CR><CR>%----------------------------------------------------------------<CR>%INFO O DOKUMENT<CR>\fancyhead[L]{<+Prilezitost+>}<CR>\fancyhead[C]{\textbf{<+Tema+>}}<CR>\fancyhead[R]{\textsc{Jindřich Dušek}, <+Instituce+>}<CR>%----------------------------------------------------------------<CR>%VLASTNÍ MAKRA<CR>\newtheorem{dlzt}{Důležité:}<CR>\newtheorem{defi}{Definice:}<CR>\begin{document}<CR><++><CR>\end{document}<esc>gg
 
 
-
-
+:inoremap \newstyle <esc><F3>i%(c) Ondřej Tkaczyszyn<CR>%% This program can be redistributed and/or modified under the terms<CR>%% of the LaTeX Project Public License Distributed from CTAN archives<CR>%% in directory macros/latex/base/lppl.txt.<CR>%<CR>\NeedsTeXFormat{LaTeX2e}[2016/02/01]<CR>\ProvidesPackage{<++>}<CR>[<++>]        \RequirePackage{<++>}<CR>\ExplSyntaxOff<CR>\endinput  <CR><F3><esc>k<S-o>
 
 "Makra na řecká písmena
-:inoremap <space>al<space> <space>\alpha 
-:inoremap <space>bt<space> <space>\beta 
-:inoremap <space>ga<space> <space>\gamma 
-:inoremap <space>dl<space> <space>\delta 
-:inoremap <space>ep<space> <space>\epsilon 
-:inoremap <space>zt<space> <space>\zeta 
-:inoremap <space>et<space> <space>\eta 
-:inoremap <space>th<space> <space>\theta 
-:inoremap <space>io<space> <space>\iota 
-:inoremap <space>ka<space> <space>\kappa 
-:inoremap <space>mu<space> <space>\mu 
-:inoremap <space>nu<space> <space>\nu 
-:inoremap <space>xi<space> <space>\xi 
-:inoremap <space>pi<space> <space>\pi 
-:inoremap <space>rh<space> <space>\rho 
-:inoremap <space>sg<space> <space>\sigma 
-:inoremap <space>tau<space> <space>\tau 
-:inoremap <space>up<space> <space>\upsilon 
-:inoremap <space>ph<space> <space>\phi 
-:inoremap <space>ch<space> <space>\chi 
-:inoremap <space>ps<space> <space>\psi 
-:inoremap <space>om<space> <space>\omega 
-:inoremap <space>la<space> <space>\lambda 
+":inoremap <space>al<space> <space>\alpha 
+":inoremap <space>bt<space> <space>\beta 
+":inoremap <space>ga<space> <space>\gamma 
+":inoremap <space>dl<space> <space>\delta 
+":inoremap <space>ep<space> <space>\epsilon 
+":inoremap <space>zt<space> <space>\zeta 
+":inoremap <space>et<space> <space>\eta 
+":inoremap <space>th<space> <space>\theta 
+":inoremap <space>io<space> <space>\iota 
+":inoremap <space>ka<space> <space>\kappa 
+":inoremap <space>mu<space> <space>\mu 
+":inoremap <space>nu<space> <space>\nu 
+":inoremap <space>xi<space> <space>\xi 
+":inoremap <space>pi<space> <space>\pi 
+":inoremap <space>rh<space> <space>\rho 
+":inoremap <space>sg<space> <space>\sigma 
+":inoremap <space>tau<space> <space>\tau 
+":inoremap <space>up<space> <space>\upsilon 
+":inoremap <space>ph<space> <space>\phi 
+":inoremap <space>ch<space> <space>\chi 
+":inoremap <space>ps<space> <space>\psi 
+":inoremap <space>om<space> <space>\omega 
+":inoremap <space>la<space> <space>\lambda 
 
-:inoremap <space>Al<space> <space>\Alpha 
-:inoremap <space>Bt<space> <space>\Beta 
-:inoremap <space>Ga<space> <space>\Gamma 
-:inoremap <space>Dl<space> <space>\Delta 
-:inoremap <space>Ep<space> <space>\Epsilon 
-:inoremap <space>Zt<space> <space>\Zeta 
-:inoremap <space>Et<space> <space>\Eta 
-:inoremap <space>Th<space> <space>\Theta 
-:inoremap <space>Io<space> <space>\Iota 
-:inoremap <space>Ka<space> <space>\Kappa 
-:inoremap <space>Mu<space> <space>\Mu 
-:inoremap <space>Nu<space> <space>\Nu 
-:inoremap <space>Xi<space> <space>\Xi 
-:inoremap <space>Pi<space> <space>\Pi 
-:inoremap <space>Rh<space> <space>\Rho 
-:inoremap <space>Sg<space> <space>\Sigma 
-:inoremap <space>Tau<space> <space>\Tau 
-:inoremap <space>Up<space> <space>\Upsilon 
-:inoremap <space>Ph<space> <space>\Phi 
-:inoremap <space>Ch<space> <space>\Chi 
-:inoremap <space>Ps<space> <space>\Psi 
-:inoremap <space>Om<space> <space>\Omega 
-:inoremap <space>La<space> <space>\Lambda 
+":inoremap <space>Al<space> <space>\Alpha 
+":inoremap <space>Bt<space> <space>\Beta 
+":inoremap <space>Ga<space> <space>\Gamma 
+":inoremap <space>Dl<space> <space>\Delta 
+":inoremap <space>Ep<space> <space>\Epsilon 
+":inoremap <space>Zt<space> <space>\Zeta 
+":inoremap <space>Et<space> <space>\Eta 
+":inoremap <space>Th<space> <space>\Theta 
+":inoremap <space>Io<space> <space>\Iota 
+":inoremap <space>Ka<space> <space>\Kappa 
+":inoremap <space>Mu<space> <space>\Mu 
+":inoremap <space>Nu<space> <space>\Nu 
+":inoremap <space>Xi<space> <space>\Xi 
+":inoremap <space>Pi<space> <space>\Pi 
+":inoremap <space>Rh<space> <space>\Rho 
+":inoremap <space>Sg<space> <space>\Sigma 
+":inoremap <space>Tau<space> <space>\Tau 
+":inoremap <space>Up<space> <space>\Upsilon 
+":inoremap <space>Ph<space> <space>\Phi 
+":inoremap <space>Ch<space> <space>\Chi 
+":inoremap <space>Ps<space> <space>\Psi 
+":inoremap <space>Om<space> <space>\Omega 
+":inoremap <space>La<space> <space>\Lambda 
 
-:inoremap <space>\al<space> <space>$\alpha $
-:inoremap <space>\bt<space> <space>$\beta $ 
-:inoremap <space>\ga<space> <space>$\gamma $
-:inoremap <space>\dl<space> <space>$\delta $
-:inoremap <space>\ep<space> <space>$\epsilon $
-:inoremap <space>\zt<space> <space>$\zeta $
-:inoremap <space>\et<space> <space>$\eta $
-:inoremap <space>\th<space> <space>$\theta $
-:inoremap <space>\io<space> <space>$\iota $
-:inoremap <space>\ka<space> <space>$\kappa $
-:inoremap <space>\mu<space> <space>$\mu $
-:inoremap <space>\nu<space> <space>$\nu $
-:inoremap <space>\xi<space> <space>$\xi $
-:inoremap <space>\pi<space> <space>$\pi $
-:inoremap <space>\rh<space> <space>$\rho $
-:inoremap <space>\sg<space> <space>$\sigma $
-:inoremap <space>\tau<space> <space>$\tau $
-:inoremap <space>\up<space> <space>$\upsilon $
-:inoremap <space>\ph<space> <space>$\phi $
-:inoremap <space>\ch<space> <space>$\chi $
-:inoremap <space>\ps<space> <space>$\psi $
-:inoremap <space>\om<space> <space>$\omega $
-:inoremap <space>\la<space> <space>$\lambda $
+":inoremap <space>\al<space> <space>$\alpha $
+":inoremap <space>\bt<space> <space>$\beta $ 
+":inoremap <space>\ga<space> <space>$\gamma $
+":inoremap <space>\dl<space> <space>$\delta $
+":inoremap <space>\ep<space> <space>$\epsilon $
+":inoremap <space>\zt<space> <space>$\zeta $
+":inoremap <space>\et<space> <space>$\eta $
+":inoremap <space>\th<space> <space>$\theta $
+":inoremap <space>\io<space> <space>$\iota $
+":inoremap <space>\ka<space> <space>$\kappa $
+":inoremap <space>\mu<space> <space>$\mu $
+":inoremap <space>\nu<space> <space>$\nu $
+":inoremap <space>\xi<space> <space>$\xi $
+":inoremap <space>\pi<space> <space>$\pi $
+":inoremap <space>\rh<space> <space>$\rho $
+":inoremap <space>\sg<space> <space>$\sigma $
+":inoremap <space>\tau<space> <space>$\tau $
+":inoremap <space>\up<space> <space>$\upsilon $
+":inoremap <space>\ph<space> <space>$\phi $
+":inoremap <space>\ch<space> <space>$\chi $
+":inoremap <space>\ps<space> <space>$\psi $
+":inoremap <space>\om<space> <space>$\omega $
+":inoremap <space>\la<space> <space>$\lambda $
 
-:inoremap <space>\Al<space> <space>$\Alpha $
-:inoremap <space>\Bt<space> <space>$\Beta $
-:inoremap <space>\Ga<space> <space>$\Gamma $
-:inoremap <space>\Dl<space> <space>$\Delta $
-:inoremap <space>\Ep<space> <space>$\Epsilon $
-:inoremap <space>\Zt<space> <space>$\Zeta $
-:inoremap <space>\Et<space> <space>$\Eta $
-:inoremap <space>\Th<space> <space>$\Theta $
-:inoremap <space>\Io<space> <space>$\Iota $
-:inoremap <space>\Ka<space> <space>$\Kappa $
-:inoremap <space>\Mu<space> <space>$\Mu $
-:inoremap <space>\Nu<space> <space>$\Nu $
-:inoremap <space>\Xi<space> <space>$\Xi $
-:inoremap <space>\Pi<space> <space>$\Pi $
-:inoremap <space>\Rh<space> <space>$\Rho $
-:inoremap <space>\Sg<space> <space>$\Sigma $
-:inoremap <space>\Tau<space> <space>$\Tau $
-:inoremap <space>\Up<space> <space>$\Upsilon $
-:inoremap <space>\Ph<space> <space>$\Phi $
-:inoremap <space>\Ch<space> <space>$\Chi $
-:inoremap <space>\Ps<space> <space>$\Psi $
-:inoremap <space>\Om<space> <space>$\Omega $
-:inoremap <space>\La<space> <space>$\Lambda $
+":inoremap <space>\Al<space> <space>$\Alpha $
+":inoremap <space>\Bt<space> <space>$\Beta $
+":inoremap <space>\Ga<space> <space>$\Gamma $
+":inoremap <space>\Dl<space> <space>$\Delta $
+":inoremap <space>\Ep<space> <space>$\Epsilon $
+":inoremap <space>\Zt<space> <space>$\Zeta $
+":inoremap <space>\Et<space> <space>$\Eta $
+":inoremap <space>\Th<space> <space>$\Theta $
+":inoremap <space>\Io<space> <space>$\Iota $
+":inoremap <space>\Ka<space> <space>$\Kappa $
+":inoremap <space>\Mu<space> <space>$\Mu $
+":inoremap <space>\Nu<space> <space>$\Nu $
+":inoremap <space>\Xi<space> <space>$\Xi $
+":inoremap <space>\Pi<space> <space>$\Pi $
+":inoremap <space>\Rh<space> <space>$\Rho $
+":inoremap <space>\Sg<space> <space>$\Sigma $
+":inoremap <space>\Tau<space> <space>$\Tau $
+":inoremap <space>\Up<space> <space>$\Upsilon $
+":inoremap <space>\Ph<space> <space>$\Phi $
+":inoremap <space>\Ch<space> <space>$\Chi $
+":inoremap <space>\Ps<space> <space>$\Psi $
+":inoremap <space>\Om<space> <space>$\Omega $
+":inoremap <space>\La<space> <space>$\Lambda $
 
 :inoremap <leader>i \textit{}<++><esc>4hi
 :inoremap <leader>b \textbf{}<++><esc>4hi

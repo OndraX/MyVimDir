@@ -12,6 +12,17 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 	execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 endif
 
+"Reload current active ftplugin on .vimrc load for quick plugin editing
+let g:do_reload_ftplugin=1
+function! ReloadAll()
+	let varft=&ft
+	if varft
+		execute ":so ".expand('<sfile>:p:h')."/ftplugin/".varft.".vim"
+	endif
+endfunction 
+if g:do_reload_ftplugin
+	:call ReloadAll()
+endif
 "Plug to load all plugins
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -27,6 +38,7 @@ Plug 'tpope/vim-surround'
 Plug 'altercation/vim-colors-solarized'
 "Pretty vim utility line
 Plug 'bling/vim-airline'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 "YCM install scripts
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
@@ -74,12 +86,14 @@ let g:user_emmet_settings = {
   \}
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
+let g:ale_echo_msg_format = '%linter% says %s'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 autocmd BufWritePost *.js AsyncRun -post=checktime eslint --fix % 
 ":command RunServer AsyncRun preact watch
 " Map Ctrl-Backspace to delete the previous word in insert mode.
 
 " omnifuncs
+"
 augroup omnifuncs
   autocmd!
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -89,6 +103,7 @@ augroup omnifuncs
 augroup end
 
 " tern
+"
 if exists('g:plugs["tern_for_vim"]')
   let g:tern_show_argument_hints = 'on_hold'
   let g:tern_show_signature_in_pum = 1
@@ -97,9 +112,11 @@ if exists('g:plugs["tern_for_vim"]')
 endif 
 
 " Load separate keybindings file
+"
 :source ~/.vim/keys.vim
 
 "Colorscheme settings
+"
 set t_Co=256
 let g:solarized_termcolors=256
 set background=light
@@ -113,4 +130,18 @@ colorscheme solarized
 "
 let g:localvimrc_sandbox=0
 let g:localvimrc_ask=0
+
+"Autoreload settings for Chrome Dev Tools
+"
+
+function! AutoLoad()
+	" Triger `autoread` when files changes on disk
+	" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+	" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+	autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+	" Notification after file change
+	" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+	autocmd FileChangedShellPost *
+	  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+endfunction
 
