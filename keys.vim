@@ -52,17 +52,20 @@ nmap <leader>s<down>   :rightbelow new<CR>
 :nnoremap <silent> gc xph
 :nnoremap <silent> gC Xph
 :nnoremap <silent> gw "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
-:nnoremap <silent> gl "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
+:nnoremap <silent> gl ddp
+:nnoremap <silent> gL ddkkp
+":nnoremap <silent> gl "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
 :nnoremap <silent> gr "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>:nohlsearch<CR>
 :nnoremap g{ {dap}p{
 
-
+a
+b
 "Insert mode maps
 :inoremap (( ()<++><esc>4hi
 :inoremap {{ {}<++><esc>4hi
 :inoremap [[ []<++><esc>4hi
 
 "Convenient switching between buffers // instead of tabs
-:noremap <esc><left> <esc>:bnext<CR>
-:noremap <esc><right> <esc>:bprev<CR>
+:noremap <C-Left> <esc>:bnext<CR>
+:noremap <C-Right> <esc>:bprev<CR>
 :noremap <C-x> <esc>:bd<CR>

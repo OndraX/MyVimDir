@@ -14,12 +14,12 @@ endif
 
 "Reload current active ftplugin on .vimrc load for quick plugin editing
 let g:do_reload_ftplugin=1
-function! ReloadAll()
+:function! ReloadAll()
 	let varft=&ft
 	if varft
 		execute ":so ".expand('<sfile>:p:h')."/ftplugin/".varft.".vim"
 	endif
-endfunction 
+:endfunction 
 if g:do_reload_ftplugin
 	:call ReloadAll()
 endif
@@ -144,4 +144,37 @@ function! AutoLoad()
 	autocmd FileChangedShellPost *
 	  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 endfunction
+"Convenience function for multiple ftplugin files -- makes a block given the
+"surrounding phrases
 
+"TODO: use expression which allows buffer or paste instead of string for name
+"cross-platform
+:function! DuplicateAndSurround(phrase,prefix_first,suffix_first,prefix_second,suffix_second,...)
+let name = ''
+if a:0==0
+	let line = getline('.')
+	call inputsave()
+	let name = input(a:phrase)
+	call inputrestore()
+else
+	let name=get(a:,1,0)
+endif
+let lineone=a:prefix_first .name.a:suffix_first
+let linetwo=a:prefix_second.name.a:suffix_second
+put =lineone
+put =linetwo
+:endfunction			
+
+let g:phrase='Enter environment name: '
+let g:prefix_first='{ '
+let g:suffix_first=' }'
+let g:prefix_second='{ '
+let g:suffix_second=' }'
+
+"Convenience function for sensible extensibility (no need to reprogram
+"functionality with optional arguments in every ftplugin, just change globals)
+"TODO: support optional arguments
+"TODO: a second thing I forgot
+:function! DefaultMakeEnv(...)
+call DuplicateAndSurround(g:phrase,g:prefix_first,g:suffix_first,g:prefix_second,g:suffix_second)
+:endfunction
