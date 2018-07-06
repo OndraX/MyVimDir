@@ -16,8 +16,8 @@
 :inoremap <C-z> <esc>d0i<del><BS>
 nmap <silent> <C-Up> :wincmd k<CR>
 nmap <silent> <C-Down> :wincmd j<CR>
-nmap <silent> <C-Left> :wincmd h<CR>
-nmap <silent> <C-Right> :wincmd l<CR>
+"nmap <silent> <C-Left> :wincmd h<CR>
+"nmap <silent> <C-Right> :wincmd l<CR>
 
 " window split commands
 "  window
@@ -58,14 +58,16 @@ nmap <leader>s<down>   :rightbelow new<CR>
 :nnoremap <silent> gr "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>:nohlsearch<CR>
 :nnoremap g{ {dap}p{
 
-a
-b
+
+
 "Insert mode maps
 :inoremap (( ()<++><esc>4hi
 :inoremap {{ {}<++><esc>4hi
 :inoremap [[ []<++><esc>4hi
 
 "Convenient switching between buffers // instead of tabs
-:noremap <C-Left> <esc>:bnext<CR>
-:noremap <C-Right> <esc>:bprev<CR>
+"TODO: finger out these darned keycodes -- <C-Left> and <C-Right> get buggered
+"   by tmux
+:noremap [1;5D <esc>:bn<CR>
+:noremap [1;5C <esc>:bp<CR>
 :noremap <C-x> <esc>:bd<CR>

@@ -1,9 +1,13 @@
+"TODO: remap d and D and dd to delete into named register (d?) and add key to
+"paste last deleted ting ((pp | PP)?)
+
 autocmd!
 filetype plugin on
 syntax on
 set autoindent
-set noexpandtab
-set tabstop=8
+set expandtab
+set tabstop=4
+set shiftwidth=4
 :let mapleader=','
 :nnoremap <F2> :!python3 %<cr>
 :set pastetoggle=<F3>
