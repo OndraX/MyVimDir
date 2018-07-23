@@ -1,6 +1,6 @@
 "TODO: remap d and D and dd to delete into named register (d?) and add key to
 "paste last deleted ting ((pp | PP)?)
-
+"
 autocmd!
 filetype plugin on
 syntax on
@@ -8,10 +8,18 @@ set autoindent
 set expandtab
 set tabstop=4
 set shiftwidth=4
+set number
+"hides unused buffers so as to keep undo history
+set hidden 
+set conceallevel=1
 :let mapleader=','
 :nnoremap <F2> :!python3 %<cr>
 :set pastetoggle=<F3>
-
+"
+"Make CapsLock also Esc only when in vim
+au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
+"
 if empty(glob('~/.vim/autoload/plug.vim'))
 	execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 endif
@@ -33,8 +41,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 "For faster xml-like syntax editing 
 :command! -nargs=1 Ms execute 'vimgrep /<args>/ **/*.' . expand('%:e')
-Plug 'othree/xml.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'OndraX/xml.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
@@ -65,14 +73,17 @@ Plug 'skywind3000/asyncrun.vim'
 "Faster HTML and JS code expansion
 Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
+"Markdown syntax highlighting
 Plug 'plasticboy/vim-markdown'
-Plug 'tpope/vim-sensible'
+"Asynchronous Linting Engine
 Plug 'w0rp/ale'
 Plug 'vim-latex/vim-latex'
 "Local vimrc
 Plug 'embear/vim-localvimrc'
 "HTML live editing
 Plug 'jaxbot/browserlink.vim'
+"Gulp from vim
+Plug 'KabbAmine/gulp-vim'
 call plug#end()
 "Airline config
 let g:airline#extensions#tabline#enabled = 1
@@ -118,6 +129,9 @@ endif
 " Load separate keybindings file
 "
 :source ~/.vim/keys.vim
+" Conceal replacement patterns also offloaded into another file for size
+"
+:source ~/.vim/conceal.vim
 
 "Colorscheme settings
 "
@@ -182,3 +196,12 @@ let g:suffix_second=' }'
 :function! DefaultMakeEnv(...)
 call DuplicateAndSurround(g:phrase,g:prefix_first,g:suffix_first,g:prefix_second,g:suffix_second)
 :endfunction
+"Fix html autoindent in php
+autocmd FileType php setlocal autoindent
+"Move movement keys to a more convenient position for ATF typing
+:noremap j h
+:noremap k j
+:noremap l k
+:noremap ů l
+"For English keyboard (slightly dumb)
+:noremap ; l 

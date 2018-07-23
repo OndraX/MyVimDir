@@ -1,7 +1,6 @@
 :nnoremap \ll :! xdg-open *.html <CR>
 :inoremap <space>> ><esc>vF<yf>pT<i/<esc>ji
 
-
 if(!exists("*JumpToCSS"))
 function! JumpToCSS()
   let id_pos = searchpos("id", "nb", line('.'))[1]
@@ -19,4 +18,3 @@ endif
 
 nnoremap <F9> :call JumpToCSS()<CR>
 :set autoread
-

@@ -62,12 +62,18 @@ nmap <leader>s<down>   :rightbelow new<CR>
 
 "Insert mode maps
 :inoremap (( ()<++><esc>4hi
-:inoremap {{ {}<++><esc>4hi
+:inoremap {{ {<cr>}<++><esc>kA
 :inoremap [[ []<++><esc>4hi
 
 "Convenient switching between buffers // instead of tabs
 "TODO: finger out these darned keycodes -- <C-Left> and <C-Right> get buggered
 "   by tmux
-:noremap [1;5D <esc>:bn<CR>
-:noremap [1;5C <esc>:bp<CR>
+:noremap [1;5C <esc>:bn<CR>
+:noremap [1;5D <esc>:bp<CR>
 :noremap <C-x> <esc>:bd<CR>
+"Splits line at cursor position leaving cursor in its place
+:nnoremap r<CR>  <esc>i<CR><Esc>k$
+"Retain selection when tabbing -- allows multiple tabation
+:vnoremap << <<<esc>gv
+:vnoremap >> >><esc>gv
+nnoremap gp `[v`]
