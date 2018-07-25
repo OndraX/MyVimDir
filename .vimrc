@@ -5,21 +5,27 @@ autocmd!
 filetype plugin on
 syntax on
 set autoindent
-set expandtab
+set noexpandtab
 set tabstop=4
 set shiftwidth=4
 set number
+set formatoptions+=r
 "hides unused buffers so as to keep undo history
 set hidden 
-set conceallevel=1
 :let mapleader=','
 :nnoremap <F2> :!python3 %<cr>
 :set pastetoggle=<F3>
 "
-"Make CapsLock also Esc only when in vim
-au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
-"
+"Make CapsLock <-> Esc only when in vim
+" "Not currently used -- switched permanently in xkbmap options
+:let g:switch_caps_esc=0
+:if(g:switch_caps_esc == 1)
+:   augroup esc_lock
+:   autocmd!
+:   au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+:   au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
+:   augroup END
+:endif
 if empty(glob('~/.vim/autoload/plug.vim'))
 	execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 endif
@@ -72,12 +78,15 @@ Plug 'evidens/vim-twig'
 Plug 'skywind3000/asyncrun.vim'
 "Faster HTML and JS code expansion
 Plug 'mattn/emmet-vim'
-Plug 'pangloss/vim-javascript'
+"Plug 'pangloss/vim-javascript'
 "Markdown syntax highlighting
 Plug 'plasticboy/vim-markdown'
 "Asynchronous Linting Engine
 Plug 'w0rp/ale'
+
 Plug 'vim-latex/vim-latex'
+Plug   'KeitaNakamura/tex-conceal.vim', {'for': 'tex'} " for VimPlug
+
 "Local vimrc
 Plug 'embear/vim-localvimrc'
 "HTML live editing

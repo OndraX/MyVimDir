@@ -158,3 +158,4 @@ endif
 :inoremap <leader>l \underline{}<++><esc>4hi
 :inoremap <leader>d <esc>ddi
 "Todo: make work to italicise current word
+let g:tex_conceal="abdgm"
