@@ -5,6 +5,8 @@
 :inoremap <C-Del> <esc><C-v>ed<esc>i
 "Reloads the .vimrc // consider AutoCmding
 :noremap <C-R>e <esc>:so $MYVIMRC<CR>
+" Open vimrc and cd to vim folder
+:noremap <C-V>i <esc>:e ~/.vim/.vimrc<CR>:lcd %:p:h<CR>
 
 "Searches word under cursor
 :nnoremap <Leader>s /\<<C-r><C-w>/>
@@ -18,7 +20,10 @@ nmap <silent> <C-Up> :wincmd k<CR>
 nmap <silent> <C-Down> :wincmd j<CR>
 "nmap <silent> <C-Left> :wincmd h<CR>
 "nmap <silent> <C-Right> :wincmd l<CR>
-
+"remove tag from DOM tree (keeping contents)
+noremap <leader>rt yitvatp  
+"remove tag surrounding selection (redundant and unreliable?)
+"vnoremap <leader>rst 	
 " window split commands
 "  window
 nmap <leader>S<left>  :topleft  vnew<CR>
@@ -41,8 +46,8 @@ nmap <leader>s<down>   :rightbelow new<CR>
 
 :noremap s<C-Down> <C-W>
 :noremap \v :e ~/.vim
-:cmap q<CR> bd<CR>
-:cmap Q<Cr> bd<CR>
+":cmap q<CR> bd<CR>
+":cmap Q<Cr> bd<CR>
 
 :noremap <C-O>p <esc>:e
 
@@ -57,7 +62,18 @@ nmap <leader>s<down>   :rightbelow new<CR>
 ":nnoremap <silent> gl "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
 :nnoremap <silent> gr "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>:nohlsearch<CR>
 :nnoremap g{ {dap}p{
-
+" Select current do_u_ble or s_i_ngle q_u_ote wrapped sentence
+:nnoremap <leader>qi F'v,
+:inoremap <leader>qi <esc>F'v,
+:nnoremap <leader>qu F"v,
+:inoremap <leader>qu <esc>F'v,
+" Analogously select _p_arenthetical statements
+:nnoremap <leader>p( F(vf)
+:inoremap <leader>p( <esc>F(vf)
+:nnoremap <leader>p[ F[vf]
+:inoremap <leader>p[ <esc>F[vf]
+:nnoremap <leader>p{ F{vf}
+:inoremap <leader>p{ <esc>F{vf}
 
 
 "Insert mode maps
@@ -70,7 +86,16 @@ nmap <leader>s<down>   :rightbelow new<CR>
 "   by tmux
 :noremap [1;5C <esc>:bn<CR>
 :noremap [1;5D <esc>:bp<CR>
-:noremap <C-x> <esc>:bd<CR>
+fun! QuitFileOrVim()
+	:if @%==""
+		echom("File empty")
+		:q!
+	:else
+		echom("File full")
+		:bd
+	:endif
+:endfun
+:noremap <C-x> <esc>:call QuitFileOrVim()<CR>
 "Splits line at cursor position leaving cursor in its place
 :nnoremap r<CR>  <esc>i<CR><Esc>k$
 "Retain selection when tabbing -- allows multiple tabation

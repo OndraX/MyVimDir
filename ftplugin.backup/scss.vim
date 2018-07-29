@@ -1,6 +1,4 @@
 :autocmd!
-:set expandtab
-:set tabstop=2
 
 :call AutoLoad()
 
@@ -10,4 +8,3 @@
 :autocmd BufWritePost *.scss execute "AsyncRun sass % " . g:sassFilePath . expand('%:r') . ".css"
 :syntax on
 :AirlineRefresh
-let b:ale_fixers= ['stylelint']

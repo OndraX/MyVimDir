@@ -1,20 +1,5 @@
 :nnoremap \ll :! xdg-open *.html <CR>
-"Autocompletes tag (obsolete with emmet)
-":inoremap <space>> ><esc>vF<yf>pT<i/<esc>ji
-:inoremap ,C <!--{{--><CR><++><CR><!--}}-->
-:inoremap ,c <!--<++>-->
-let g:comment_pre='<!--'
-let g:comment_post='-->'
-
-function! MakeEnv()
-	let prea= '<!--/BEGIN '
-	let posta='/-->'
-	let preb='<!--/END '
-	let postb='/-->'
-	:call DuplicateAndSurround(g:phrase,prea,posta,preb,postb)
-	:endfunc
-
-:imap \env <esc>:call MakeEnv()<CR><esc>O
+:inoremap <space>> ><esc>vF<yf>pT<i/<esc>ji
 
 if(!exists("*JumpToCSS"))
 function! JumpToCSS()

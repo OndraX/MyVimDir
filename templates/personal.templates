@@ -2,10 +2,10 @@
 §  Personal Information
 § =============================================================
 
-SetMacro( 'AUTHOR',       'Jindřich Dušek' )
-SetMacro( 'AUTHORREF',    'jd' )
-SetMacro( 'EMAIL',        'jd@mamlasinky.com' )
-SetMacro( 'ORGANIZATION', '' )
+SetMacro( 'AUTHOR',       'ONDŘEJ TKACZYSZYN' )
+SetMacro( 'AUTHORREF',    'ot' )
+SetMacro( 'EMAIL',        'ondtka@gmail.com' )
+SetMacro( 'ORGANIZATION', 'GJK' )
 SetMacro( 'COMPANY',      '' )
 SetMacro( 'COPYRIGHT',    'Copyright (c) |YEAR|, |AUTHOR|' )
 SetMacro( 'LICENSE',      'GNU General Public License' )

@@ -57,6 +57,8 @@ Plug 'altercation/vim-colors-solarized'
 "Pretty vim utility line
 Plug 'bling/vim-airline'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'SirVer/UltiSnips'
+Plug 'honza/vim-snippets'
 "YCM install scripts
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
@@ -90,16 +92,22 @@ Plug   'KeitaNakamura/tex-conceal.vim', {'for': 'tex'} " for VimPlug
 "Local vimrc
 Plug 'embear/vim-localvimrc'
 "HTML live editing
-Plug 'jaxbot/browserlink.vim'
+"Plug 'jaxbot/browserlink.vim'
 "Gulp from vim
-Plug 'KabbAmine/gulp-vim'
+"Plug 'KabbAmine/gulp-vim'
+"simple template files
+Plug 'ap/vim-templates'
 call plug#end()
 "Airline config
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline_theme = 'base16'
 let g:airline_powerline_fonts = 1
-
+"UltiSnips config
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsExpandTrigger="<leader>x"
+let g:UltiSnipsJumpForwardTrigger="<c-k>"
+let g:UltiSnipsJumpBackwardTrigger="<c-l>"
 "Hotfixes
 au BufReadPost,BufNewFile *.tex set filetype=tex "Fix for LaTeX files not getting correct filetype
 let g:user_emmet_leader_key=','
@@ -147,6 +155,7 @@ endif
 set t_Co=256
 let g:solarized_termcolors=256
 set background=light
+set rtp+=~/.vim/plugged/vim-colors-solarized
 colorscheme solarized
 
 :nmap <leader>uv<CR> <esc>:%s/"\(.\{-}\)"/\\uv{\1}/g
@@ -207,6 +216,7 @@ call DuplicateAndSurround(g:phrase,g:prefix_first,g:suffix_first,g:prefix_second
 :endfunction
 "Fix html autoindent in php
 autocmd FileType php setlocal autoindent
+"Load filetype-based .vim/templates:
 "Move movement keys to a more convenient position for ATF typing
 :noremap j h
 :noremap k j
@@ -214,3 +224,26 @@ autocmd FileType php setlocal autoindent
 :noremap ů l
 "For English keyboard (slightly dumb)
 :noremap ; l 
+"Change local directory on buffer load
+:autocmd Filetype,BufEnter * :lcd %:p:h
+
+" Alias commands without unwanted behaviour
+" via https://stackoverflow.com/a/3879737
+
+fun! SetupCommandAlias(from, to)
+  exec 'cnoreabbrev <expr> '.a:from
+        \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
+        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+endfun
+"Command to find files
+" find files and populate the quickfix list
+fun! FindFiles(filename)
+  let error_file = tempname()
+  silent exe '!find . -name "'.a:filename.'" | xargs file | sed "s/:/:1:/" > '.error_file
+  set errorformat=%f:%l:%m
+  exe "cfile ". error_file
+  copen
+  call delete(error_file)
+endfun
+command! -nargs=1 FindFile call FindFiles(<q-args>)
+:call SetupCommandAlias('f','FindFiles')
