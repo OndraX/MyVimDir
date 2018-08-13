@@ -1,0 +1,10 @@
+{
+	"javascript": {
+		"filters": "js",
+		"profile": "js",
+		"abbreviations": {
+			"br": "<brzzz/>",
+			"foo": "fullName: Ember.computed('firstName', 'lastName', {\n\tget() {\n\t\treturn `${this.get('firstName')} ${this.get('lastName')}`;\n\t}\n})"
+		}
+	}
+}

@@ -1,0 +1,9 @@
+[submodule "bundle/bundle/webapi-vim"]
+	path = bundle/bundle/webapi-vim
+	url = https://github.com/mattn/webapi-vim.git
+[submodule "bundle/webapi-vim"]
+	path = bundle/webapi-vim
+	url = https://github.com/mattn/webapi-vim.git
+[submodule "bundle/Vundle.vim"]
+	path = bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim
