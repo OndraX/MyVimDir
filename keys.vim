@@ -10,6 +10,20 @@
 " Open vimrc and cd to vim folder
 :noremap <C-V>i <esc>:e ~/.vim/.vimrc<CR>:lcd %:p:h<CR>
 
+"Get vim home directory ( y tho )
+if has('win32') || has ('win64')
+	let g:vimhome=$VIM."/vimfiles"
+else
+	let g:vimhome=$HOME."/.vim"
+endif
+
+" Open relevant ftplugin
+:fun! ToFTPlugin()
+	let varft=&ft
+	execute ":e ".g:vimhome."/ftplugin/".varft.".vim"
+:endfun!
+:noremap <C-F>p <esc>:call ToFTPlugin()<CR>
+
 
 "Replaces word under cursor
 :nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
@@ -94,7 +108,7 @@ nnoremap ,S <esc>:set opfunc=SwapMotion(0)<CR>g@
 		":bd
 	":endif
 ":endfun
-:noremap <C-x> <esc>:bd<CR>
+:noremap <C-w> <esc>:bd<CR>
 "Splits line at cursor position leaving cursor in its place
 :nnoremap r<CR>  <esc>i<CR><Esc>k$
 "Retain selection when tabbing -- allows multiple tabation
@@ -117,3 +131,8 @@ noremap <leader>pt yitvatp
 
 "" Toggles
 :nnoremap <leader>tl ALEToggle<CR>
+"" Silly stuff
+:inoremap <space><space>fl ☙
+:inoremap <space><space>fr ❧
+:inoremap <space><space>fm ❦
+

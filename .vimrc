@@ -3,14 +3,20 @@
 "
 autocmd!
 syntax on
+"indentation
 set autoindent
 set noexpandtab
 set tabstop=4
 set shiftwidth=4
+"Show relative line numbers
 set number
 set relativenumber
 "Automatically multiline comments (/*\n *\n *\n */)
 set formatoptions+=r
+"source local .vimrc files
+set exrc
+set secure
+"
 set autowrite
 "hides unused buffers so as to keep undo history
 set hidden 
@@ -33,12 +39,19 @@ set hidden
 "	execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 "endif
 
+ if has('win32') || has ('win64')
+        let g:vimhome=$VIM."/vimfiles"
+    else
+        let g:vimhome=$HOME."/.vim"
+	endif
+
 "Reload current active ftplugin on .vimrc load for quick plugin editing
+
 let g:do_reload_ftplugin=1
 :fun! ReloadAll()
 	let varft=&ft
 	if varft
-		execute ":so ".expand('<sfile>:p:h')."/ftplugin/".varft.".vim"
+		execute ":so ".g:vimhome."/ftplugin/".varft.".vim"
 	endif
 :endfun 
 if g:do_reload_ftplugin
@@ -100,8 +113,8 @@ Plugin 'w0rp/ale'
 Plugin 'vim-latex/vim-latex'
 Plugin   'KeitaNakamura/tex-conceal.vim', {'for': 'tex'} " for VimPlugin
 
-"Local vimrc
-Plugin 'embear/vim-localvimrc'
+"Local vimrc -- replaced by :set exrc
+" Plugin 'embear/vim-localvimrc'
 "HTML live editing
 "Plugin 'jaxbot/browserlink.vim'
 "Gulp from vim
@@ -111,7 +124,6 @@ Plugin 'ap/vim-templates'
 "Recent file list
 Plugin 'yegappan/mru'
 call vundle#end()
-filetype plugin indent on
 "Airline config
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
@@ -177,12 +189,6 @@ if exists('g:plugs["tern_for_vim"]')
   autocmd FileType javascript setlocal omnifunc=tern#Complete
 endif 
 
-" Load separate keybindings file
-"
-:source ~/.vim/keys.vim
-" Conceal replacement patterns also offloaded into another file for size
-"
-:source ~/.vim/conceal.vim
 
 "Colorscheme settings
 "
@@ -259,7 +265,7 @@ autocmd FileType php setlocal autoindent
 "For English keyboard (slightly dumb)
 :noremap ; l 
 "Change local directory on buffer load
-:autocmd Filetype,BufEnter * :lcd %:p:h
+:set autochdir
 
 " Alias commands without unwanted behaviour
 " via https://stackoverflow.com/a/3879737
@@ -285,5 +291,18 @@ command! -nargs=1 FindFile call FindFiles(<q-args>)
 :call SetupCommandAlias('f','FindFiles')
 " quit if no buffers loaded
 :autocmd BufDelete * if len(filter(range(1, bufnr('$')), '! empty(bufname(v:val)) && buflisted(v:val)')) == 1 | quit | endif
+"Differentiate tabs from spaces
+" set listchars=eol:\,tab:│i,space:·,trail:!
+:set listchars=tab:│﮲,extends:›,precedes:‹,nbsp:·,trail:·
+:hi SpecialKey ctermbg=230 ctermfg=gray
+let g:loaded_togglebg=1
 "Write to readonly file
 :call SetupCommandAlias('sudow','w !sudo tee %')
+" Load separate keybindings file
+"
+:source ~/.vim/keys.vim
+" Conceal replacement patterns also offloaded into another file for size
+"
+:source ~/.vim/conceal.vim
+"Ftplugin source on end to allow global variables
+filetype plugin indent on

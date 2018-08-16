@@ -1,4 +1,4 @@
-set conceallevel=2
+setlocal conceallevel=2
 "A nonretarded conceal cursor:
 set concealcursor=c
 
