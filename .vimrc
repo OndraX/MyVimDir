@@ -114,7 +114,7 @@ Plugin 'vim-latex/vim-latex'
 Plugin   'KeitaNakamura/tex-conceal.vim', {'for': 'tex'} " for VimPlugin
 
 "Local vimrc -- replaced by :set exrc
-" Plugin 'embear/vim-localvimrc'
+Plugin 'embear/vim-localvimrc'
 "HTML live editing
 "Plugin 'jaxbot/browserlink.vim'
 "Gulp from vim

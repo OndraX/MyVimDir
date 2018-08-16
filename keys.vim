@@ -44,7 +44,7 @@ nmap <silent> <C-Down> :wincmd j<CR>
 :noremap <leader><up> 10<C-w>+
 :noremap <leader><down> 10<C-w>-
 
-":noremap <C-s> :let g:split='vertical'<CR>:Vex
+:noremap <C-s> :let g:split='vertical'<CR>:Vex
 ":noremap <C-s> :let g:split='horizontal'<CR>:Sex
 
 ":cmap Q<Cr> bd<CR>
@@ -93,10 +93,18 @@ nnoremap ,S <esc>:set opfunc=SwapMotion(0)<CR>g@
 :inoremap [[ []<++><esc>4hi
 
 "Convenient switching between buffers // instead of tabs
-"TODO: finger out these darned keycodes -- <C-Left> and <C-Right> get buggered
+" circular windows navigation
+:nnoremap <Tab>   <esc>:bn<CR>
+:nnoremap <S-Tab> <esc>:bp<CR>
+
+
+"TODO: finger out these darnwed keycodes -- <C-Left> and <C-Right> get buggered
 "   by tmux
-:noremap [1;5C <esc>:bn<CR>
-:noremap [1;5D <esc>:bp<CR>
+:noremap [1;5C <c-W>w
+:noremap [1;5D <c-W>W
+" jump list
+:nmap <c-j> <c-i>
+:nmap <c-k> <c-o>
 "[Obsoleted by autocommand -- bit which quits vim entirely on empty buffer,
 "otherwise just destroys current buffer
 "fun! QuitFileOrVim()
@@ -108,12 +116,15 @@ nnoremap ,S <esc>:set opfunc=SwapMotion(0)<CR>g@
 		":bd
 	":endif
 ":endfun
-:noremap <C-w> <esc>:bd<CR>
+:noremap <C-q> <esc>:bd<CR>
 "Splits line at cursor position leaving cursor in its place
 :nnoremap r<CR>  <esc>i<CR><Esc>k$
 "Retain selection when tabbing -- allows multiple tabation
 :vnoremap << <<<esc>gv
 :vnoremap >> >><esc>gv
+"search for visually selected text
+vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
+vnoremap /% y:%s/\V<C-r>=escape(@",'/\')<CR>//g<left><left>
 "G_et p_revious visual selection
 nnoremap gp `[v`]
 :inoremap <leader>ul <esc>yyPj^v$r-
@@ -135,4 +146,7 @@ noremap <leader>pt yitvatp
 :inoremap <space><space>fl ☙
 :inoremap <space><space>fr ❧
 :inoremap <space><space>fm ❦
-
+"l_ock s_crolling in parallel windows (toggle)
+:nmap <leader>ls :scb!<CR>
+"c_enter s_croll within a window (toggle)
+:nmap <leader>cs let &scrolloff=999-&scrolloff<CR>

@@ -14,3 +14,7 @@ Session.vim
 tags
 # Persistent undo
 [._]*.un~
+
+#Vundle-managed files (to prevent trouble with "git submodules")
+plugged/**/*.*
+plugged
