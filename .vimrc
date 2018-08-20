@@ -23,6 +23,8 @@ set hidden
 :set pastetoggle=<F3>
 "Case-insensitive search by default, \C to alter
 :set ignorecase
+"TODO: decide on keeping this option -- CaSE sEnsitive
+:set smartcase
 "Highlight search results
 :set hlsearch
 "But enable myself to clear the highlights from previous search
@@ -75,7 +77,7 @@ Plugin 'junegunn/fzf.vim'
 "For faster xml-like syntax editing 
 :command! -nargs=1 Ms execute 'vimgrep /<args>/ **/*.' . expand('%:e')
 Plugin 'tpope/vim-fugitive'
-Plugin 'OndraX/xml.vim'
+Plugin 'othree/xml.vim'
 Plugin 'scrooloose/nerdtree'
 
 "Change: switched NERDCommenter for tcomment because of motion support and
@@ -84,8 +86,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tomtom/tcomment_vim'
 
 Plugin 'tpope/vim-surround'
-"Pretty vim colour scheme
-Plugin 'altercation/vim-colors-solarized'
+"! Pretty vim colour scheme -- offloaded to local file for customisation!
+" Plugin 'altercation/vim-colors-solarized'
 "Pretty vim utility line
 Plugin 'bling/vim-airline'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
@@ -210,7 +212,7 @@ endif
 set t_Co=256
 let g:solarized_termcolors=256
 set background=light
-set rtp+=~/.vim/plugged/vim-colors-solarized
+set rtp+=~/.vim/colors/vim-colors-solarized
 colorscheme solarized
 
 :nmap <leader>uv<CR> <esc>:%s/"\(.\{-}\)"/\\uv{\1}/g
@@ -308,12 +310,11 @@ command! -nargs=1 FindFile call FindFiles(<q-args>)
 :autocmd BufDelete * if len(filter(range(1, bufnr('$')), '! empty(bufname(v:val)) && buflisted(v:val)')) == 1 | quit | endif
 "Differentiate tabs from spaces
 " set listchars=eol:\,tab:│i,space:·,trail:!
-:set listchars=tab:│﮲,extends:›,precedes:‹,nbsp:·,trail:·
-:set list
-:hi SpecialKey ctermbg=230 ctermfg=gray
 let g:loaded_togglebg=1
 "Write to readonly file
 :call SetupCommandAlias('sudow','w !sudo tee %')
+"Ftplugin source on end to allow global variables
+filetype plugin indent on
 " Load separate keybindings file
 "
 :source ~/.vim/extras/keys.vim
@@ -323,5 +324,5 @@ let g:loaded_togglebg=1
 " Testing stash for new commands
 "
 :source ~/.vim/extras/main.vim
-"Ftplugin source on end to allow global variables
-filetype plugin indent on
+"source syntax customisations _after_ everything else
+:au VimEnter * source ~/.vim/after/syntax.vim

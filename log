@@ -1,0 +1,158 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.010  000.010: --- VIM STARTING ---
+000.174  000.164: Allocated generic buffers
+000.325  000.151: locale set
+000.333  000.008: window checked
+001.156  000.823: inits 1
+001.196  000.040: parsing arguments
+001.199  000.003: expanding arguments
+001.237  000.038: shell init
+001.626  000.389: Termcap init
+001.660  000.034: inits 2
+001.937  000.277: init highlight
+002.626  000.514  000.514: sourcing /usr/share/vim/vim81/debian.vim
+005.104  002.114  002.114: sourcing /usr/share/vim/vim81/syntax/syncolor.vim
+005.357  002.493  000.379: sourcing /usr/share/vim/vim81/syntax/synload.vim
+013.891  000.032  000.032: sourcing /home/ondra/.vim/ftdetect/template.vim
+014.005  008.547  008.515: sourcing /usr/share/vim/vim81/filetype.vim
+014.044  011.314  000.274: sourcing /usr/share/vim/vim81/syntax/syntax.vim
+014.069  012.068  000.240: sourcing $VIM/vimrc
+014.379  000.152  000.152: sourcing /usr/share/vim/vim81/syntax/nosyntax.vim
+014.665  000.193  000.193: sourcing /usr/share/vim/vim81/syntax/syncolor.vim
+014.762  000.344  000.151: sourcing /usr/share/vim/vim81/syntax/synload.vim
+014.792  000.602  000.106: sourcing /usr/share/vim/vim81/syntax/syntax.vim
+015.385  000.450  000.450: sourcing /usr/share/vim/vim81/ftoff.vim
+015.787  000.219  000.219: sourcing /home/ondra/.vim/bundle/Vundle.vim/autoload/vundle.vim
+016.023  000.150  000.150: sourcing /home/ondra/.vim/bundle/Vundle.vim/autoload/vundle/config.vim
+022.077  000.298  000.298: sourcing /home/ondra/.vim/autoload/pathogen.vim
+031.475  000.178  000.178: sourcing /usr/share/vim/vim81/syntax/syncolor.vim
+032.603  000.170  000.170: sourcing /usr/share/vim/vim81/syntax/syncolor.vim
+033.144  000.170  000.170: sourcing /usr/share/vim/vim81/syntax/syncolor.vim
+035.257  003.547  003.207: sourcing /home/ondra/.vim/plugged/vim-colors-solarized/colors/solarized.vim
+036.345  000.538  000.538: sourcing /home/ondra/.vim/extras/keys.vim
+036.540  000.175  000.175: sourcing /home/ondra/.vim/extras/conceal.vim
+036.649  000.090  000.090: sourcing /home/ondra/.vim/extras/main.vim
+036.803  000.038  000.038: sourcing /home/ondra/.vim/plugged/vim-twig/filetype.vim
+042.842  000.036  000.036: sourcing /home/ondra/.vim/ftdetect/template.vim
+042.973  000.016  000.016: sourcing /home/ondra/.vim/plugged/vim-fugitive/ftdetect/fugitive.vim
+043.119  000.035  000.035: sourcing /home/ondra/.vim/plugged/UltiSnips/ftdetect/snippets.vim
+043.213  000.023  000.023: sourcing /home/ondra/.vim/plugged/tern_for_vim/ftdetect/tern.vim
+043.308  000.034  000.034: sourcing /home/ondra/.vim/plugged/vim-markdown/ftdetect/markdown.vim
+043.691  006.816  006.672: sourcing /usr/share/vim/vim81/filetype.vim
+044.009  000.039  000.039: sourcing /usr/share/vim/vim81/ftplugin.vim
+044.313  000.034  000.034: sourcing /usr/share/vim/vim81/indent.vim
+044.442  030.349  017.175: sourcing $HOME/.vimrc
+044.445  000.091: sourcing vimrc file(s)
+046.071  001.534  001.534: sourcing /home/ondra/.vim/plugin/mru.vim
+046.765  000.598  000.598: sourcing /home/ondra/.vim/plugged/fzf/plugin/fzf.vim
+047.804  000.973  000.973: sourcing /home/ondra/.vim/plugged/fzf.vim/plugin/fzf.vim
+048.086  000.215  000.215: sourcing /home/ondra/.vim/plugged/vim-fugitive/plugin/fugitive.vim
+048.754  000.150  000.150: sourcing /home/ondra/.vim/plugged/nerdtree/autoload/nerdtree.vim
+049.959  000.501  000.501: sourcing /home/ondra/.vim/plugged/nerdtree/lib/nerdtree/path.vim
+050.150  000.125  000.125: sourcing /home/ondra/.vim/plugged/nerdtree/lib/nerdtree/menu_controller.vim
+050.277  000.068  000.068: sourcing /home/ondra/.vim/plugged/nerdtree/lib/nerdtree/menu_item.vim
+050.424  000.090  000.090: sourcing /home/ondra/.vim/plugged/nerdtree/lib/nerdtree/key_map.vim
+050.676  000.182  000.182: sourcing /home/ondra/.vim/plugged/nerdtree/lib/nerdtree/bookmark.vim
+050.935  000.190  000.190: sourcing /home/ondra/.vim/plugged/nerdtree/lib/nerdtree/tree_file_node.vim
+051.371  000.371  000.371: sourcing /home/ondra/.vim/plugged/nerdtree/lib/nerdtree/tree_dir_node.vim
+051.658  000.221  000.221: sourcing /home/ondra/.vim/plugged/nerdtree/lib/nerdtree/opener.vim
+051.974  000.222  000.222: sourcing /home/ondra/.vim/plugged/nerdtree/lib/nerdtree/creator.vim
+052.081  000.042  000.042: sourcing /home/ondra/.vim/plugged/nerdtree/lib/nerdtree/flag_set.vim
+052.263  000.123  000.123: sourcing /home/ondra/.vim/plugged/nerdtree/lib/nerdtree/nerdtree.vim
+052.597  000.277  000.277: sourcing /home/ondra/.vim/plugged/nerdtree/lib/nerdtree/ui.vim
+052.711  000.023  000.023: sourcing /home/ondra/.vim/plugged/nerdtree/lib/nerdtree/event.vim
+052.811  000.037  000.037: sourcing /home/ondra/.vim/plugged/nerdtree/lib/nerdtree/notifier.vim
+053.249  000.369  000.369: sourcing /home/ondra/.vim/plugged/nerdtree/autoload/nerdtree/ui_glue.vim
+055.684  000.092  000.092: sourcing /home/ondra/.vim/plugged/nerdtree/nerdtree_plugin/exec_menuitem.vim
+056.255  000.551  000.551: sourcing /home/ondra/.vim/plugged/nerdtree/nerdtree_plugin/fs_menu.vim
+056.914  008.744  005.110: sourcing /home/ondra/.vim/plugged/nerdtree/plugin/NERD_tree.vim
+057.109  000.033  000.033: sourcing /home/ondra/.vim/plugged/tcomment_vim/autoload/tcomment/deprecated.vim
+060.633  003.657  003.624: sourcing /home/ondra/.vim/plugged/tcomment_vim/plugin/tcomment.vim
+061.273  000.558  000.558: sourcing /home/ondra/.vim/plugged/vim-surround/plugin/surround.vim
+061.658  000.086  000.086: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/init.vim
+062.171  000.087  000.087: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/parts.vim
+063.082  001.730  001.557: sourcing /home/ondra/.vim/plugged/vim-airline/plugin/airline.vim
+063.188  000.016  000.016: sourcing /home/ondra/.vim/plugged/vim-tmux-focus-events/plugin/tmux_focus_events.vim
+063.577  000.094  000.094: sourcing /home/ondra/.vim/plugged/UltiSnips/autoload/UltiSnips/map_keys.vim
+063.686  000.440  000.346: sourcing /home/ondra/.vim/plugged/UltiSnips/plugin/UltiSnips.vim
+063.801  000.052  000.052: sourcing /home/ondra/.vim/plugged/vim-snippets/plugin/vimsnippets.vim
+064.130  000.266  000.266: sourcing /home/ondra/.vim/plugged/YouCompleteMe/plugin/youcompleteme.vim
+064.210  000.019  000.019: sourcing /home/ondra/.vim/plugged/vim-airline-themes/plugin/airline-themes.vim
+065.176  000.893  000.893: sourcing /home/ondra/.vim/plugged/asyncrun.vim/plugin/asyncrun.vim
+067.601  002.345  002.345: sourcing /home/ondra/.vim/plugged/emmet-vim/plugin/emmet.vim
+068.471  000.087  000.087: sourcing /home/ondra/.vim/plugged/ale/autoload/ale/events.vim
+068.622  000.937  000.850: sourcing /home/ondra/.vim/plugged/ale/plugin/ale.vim
+068.906  000.153  000.153: sourcing /home/ondra/.vim/plugged/vim-latex/plugin/SyntaxFolds.vim
+069.077  000.147  000.147: sourcing /home/ondra/.vim/plugged/vim-latex/plugin/filebrowser.vim
+069.639  000.538  000.538: sourcing /home/ondra/.vim/plugged/vim-latex/plugin/imaps.vim
+069.767  000.093  000.093: sourcing /home/ondra/.vim/plugged/vim-latex/plugin/remoteOpen.vim
+101.650  031.798  031.798: sourcing /home/ondra/.vim/plugged/vim-localvimrc/plugin/localvimrc.vim
+102.011  000.249  000.249: sourcing /home/ondra/.vim/plugged/vim-templates/plugin/templates.vim
+102.148  000.071  000.071: sourcing /home/ondra/.vim/plugged/mru/plugin/mru.vim
+102.377  000.172  000.172: sourcing /home/ondra/.vim/plugged/vim-autoswap/plugin/autoswap.vim
+102.638  000.201  000.201: sourcing /home/ondra/.vim/plugged/dragvisuals.vim/plugin/dragvisuals.vim
+102.921  000.206  000.206: sourcing /home/ondra/.vim/plugged/vim-vmath/plugin/vmath.vim
+103.227  000.074  000.074: sourcing /usr/share/vim/vim81/plugin/getscriptPlugin.vim
+103.437  000.190  000.190: sourcing /usr/share/vim/vim81/plugin/gzip.vim
+103.855  000.395  000.395: sourcing /usr/share/vim/vim81/plugin/logiPat.vim
+103.922  000.045  000.045: sourcing /usr/share/vim/vim81/plugin/manpager.vim
+104.158  000.217  000.217: sourcing /usr/share/vim/vim81/plugin/matchparen.vim
+104.880  000.701  000.701: sourcing /usr/share/vim/vim81/plugin/netrwPlugin.vim
+104.924  000.016  000.016: sourcing /usr/share/vim/vim81/plugin/rrhelper.vim
+104.980  000.033  000.033: sourcing /usr/share/vim/vim81/plugin/spellfile.vim
+105.203  000.174  000.174: sourcing /usr/share/vim/vim81/plugin/tarPlugin.vim
+105.315  000.087  000.087: sourcing /usr/share/vim/vim81/plugin/tohtml.vim
+105.524  000.186  000.186: sourcing /usr/share/vim/vim81/plugin/vimballPlugin.vim
+105.730  000.178  000.178: sourcing /usr/share/vim/vim81/plugin/zipPlugin.vim
+105.746  002.400: loading plugins
+105.793  000.047: loading packages
+106.155  000.139  000.139: sourcing /home/ondra/.vim/plugged/UltiSnips/after/plugin/UltiSnips_after.vim
+106.328  000.396: loading after plugins
+106.336  000.008: inits 3
+106.607  000.271: reading viminfo
+106.627  000.020: setting raw mode
+106.631  000.004: start termcap
+106.659  000.028: clearing screen
+107.685  000.445  000.445: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions.vim
+107.928  000.110  000.110: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/quickfix.vim
+108.305  000.278  000.278: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline.vim
+108.539  000.076  000.076: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/netrw.vim
+108.751  000.055  000.055: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/term.vim
+109.214  000.265  000.265: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/util.vim
+109.730  000.401  000.401: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/branch.vim
+110.004  000.082  000.082: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/fugitiveline.vim
+110.347  000.166  000.166: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/ale.vim
+110.838  000.214  000.214: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/whitespace.vim
+111.153  000.105  000.105: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/po.vim
+111.379  000.085  000.085: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/wordcount.vim
+111.854  000.326  000.326: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/tabline.vim
+112.086  000.094  000.094: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/tabline/autoshow.vim
+112.448  000.172  000.172: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/tabline/tabs.vim
+112.889  000.281  000.281: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/tabline/buffers.vim
+113.192  000.058  000.058: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/keymap.vim
+115.942  000.107  000.107: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/section.vim
+116.312  000.180  000.180: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/highlighter.vim
+120.064  000.056  000.056: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/themes.vim
+121.748  002.021  001.965: sourcing /home/ondra/.vim/plugged/vim-airline-themes/autoload/airline/themes/base16.vim
+137.497  000.296  000.296: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/builder.vim
+138.296  000.111  000.111: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/default.vim
+166.801  054.214: opening buffers
+166.891  000.090: BufEnter autocommands
+166.894  000.003: editing files in windows
+171.593  004.286  004.286: sourcing /home/ondra/.vim/plugged/vim-fugitive/autoload/fugitive.vim
+173.902  000.676  000.676: sourcing /home/ondra/.vim/plugged/YouCompleteMe/autoload/youcompleteme.vim
+294.644  122.788: VimEnter autocommands
+294.648  000.004: before starting main loop
+295.465  000.237  000.237: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/tabline/ctrlspace.vim
+296.053  000.175  000.175: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/tabline/builder.vim
+296.340  000.070  000.070: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/tabline/buflist.vim
+300.496  000.079  000.079: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/tabline/formatters/unique_tail_improved.vim
+300.780  000.066  000.066: sourcing /home/ondra/.vim/plugged/vim-airline/autoload/airline/extensions/tabline/formatters/default.vim
+307.015  000.076  000.076: sourcing /home/ondra/.vim/plugged/ale/autoload/ale/statusline.vim
+308.732  013.381: first screen update
+308.734  000.002: --- VIM STARTED ---

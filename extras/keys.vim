@@ -5,17 +5,22 @@
 :inoremap <C-BS> <esc><C-v>db<esc>i
 :inoremap <C-Del> <esc><C-v>de<esc>i
 
-"Reloads the .vimrc // consider AutoCmding
-:noremap <C-R>e <esc>:so $MYVIMRC<CR>
-" Open vimrc and cd to vim folder
-:noremap <C-V>i <esc>:e ~/.vim/.vimrc<CR>:lcd %:p:h<CR>
-
 "Get vim home directory ( y tho )
 if has('win32') || has ('win64')
 	let g:vimhome=$VIM."/vimfiles"
 else
 	let g:vimhome=$HOME."/.vim"
 endif
+
+"Reloads the .vimrc // consider AutoCmding
+:noremap <C-R>e <esc>:so $MYVIMRC<CR>
+" Open vimrc and cd to vim folder
+" :noremap <C-V>i <esc>:e ~/.vim/.vimrc<CR>:lcd %:p:h<CR>
+" Shortcuts to .vim directory
+:call SetupCommandAlias('V','e '.g:vimhome)
+:call SetupCommandAlias('VR','e '.$MYVIMRC)
+:call SetupCommandAlias('S','vsplit '.g:vimhome)
+:call SetupCommandAlias('s','split '.g:vimhome)
 
 " Open relevant ftplugin
 :fun! ToFTPlugin()
@@ -103,8 +108,9 @@ nnoremap ,S <esc>:set opfunc=SwapMotion(0)<CR>g@
 :noremap [1;5C <c-W>w
 :noremap [1;5D <c-W>W
 " jump list
-:nmap <c-j> <c-i>
-:nmap <c-k> <c-o>
+" :nmap <c-j> <c-i>
+" :nmap <c-k> <c-o>
+:nmap <c-j> i<c-j>
 "[Obsoleted by autocommand -- bit which quits vim entirely on empty buffer,
 "otherwise just destroys current buffer
 "fun! QuitFileOrVim()
@@ -161,6 +167,8 @@ noremap <leader>pt yitvatp
 " :imap <space><space>cl <esc>80i=<esc>gcc^20lR[
 " Trim unwanted whitespace
 :nnoremap <silent> <leader>tw :%s/\s\+$//e<cr>
+" Fix no whitespace after : and , indentation error
+:nnoremap <silent> <leader>fi :%s/\([:,]\)\(\S\)/\1 \2/g
 "Scroll only screen, not cursor
 :set mouse=a
 map <ScrollWheelUp> <C-Y>
