@@ -116,7 +116,10 @@ nnoremap ,S <esc>:set opfunc=SwapMotion(0)<CR>g@
 		":bd
 	":endif
 ":endfun
-:noremap <C-q> <esc>:bd<CR>
+"Smart window quitting (in conjunction with autocommand):
+"	-quits window and vim if was last window
+"	-deletes buffer keeping split
+:noremap <C-c> <esc>:bp \|bd #<CR>
 "Splits line at cursor position leaving cursor in its place
 :nnoremap r<CR>  <esc>i<CR><Esc>k$
 "Retain selection when tabbing -- allows multiple tabation
@@ -133,7 +136,7 @@ nnoremap gp `[v`]
 :inoremap <leader>p{ <esc>yi{va{p
 :nnoremap <leader>p{ yi{va{p
 "pop tag from DOM tree (keeping contents)
-noremap <leader>pt yitvatp  
+noremap <leader>pt yitvatp
 "Underline current line
 :map <leader>uu yyp^v$r=cj
 :imap <leader>uu <esc>yyp^v$r=cj
@@ -146,7 +149,19 @@ noremap <leader>pt yitvatp
 :inoremap <space><space>fl ☙
 :inoremap <space><space>fr ❧
 :inoremap <space><space>fm ❦
+" Inserts double-space "insert leader sequence" in a *very* hackish way
+:inoremap <space><space>SS space>space><esc>bi<<esc>2bi<<esc>3ei
+
 "l_ock s_crolling in parallel windows (toggle)
 :nmap <leader>ls :scb!<CR>
 "c_enter s_croll within a window (toggle)
 :nmap <leader>cs let &scrolloff=999-&scrolloff<CR>
+"Make visually nice one-line comment
+:imap <space><space>cl <esc>80i=<esc>gcc^20ůR[
+" :imap <space><space>cl <esc>80i=<esc>gcc^20lR[
+" Trim unwanted whitespace
+:nnoremap <silent> <leader>tw :%s/\s\+$//e<cr>
+"Scroll only screen, not cursor
+:set mouse=a
+map <ScrollWheelUp> <C-Y>
+map <ScrollWheelDown> <C-E>

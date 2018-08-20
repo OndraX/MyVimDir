@@ -17,3 +17,6 @@
 :syntax on
 :AirlineRefresh
 let b:ale_fixers= ['stylelint']
+"Add variable
+:inoremap <space><space>av ggi
+

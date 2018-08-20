@@ -14,8 +14,6 @@ set relativenumber
 "Automatically multiline comments (/*\n *\n *\n */)
 set formatoptions+=r
 "source local .vimrc files
-set exrc
-set secure
 "
 set autowrite
 "hides unused buffers so as to keep undo history
@@ -23,7 +21,22 @@ set hidden
 :let mapleader='\'
 :nnoremap <F2> :!python3 %<cr>
 :set pastetoggle=<F3>
+"Case-insensitive search by default, \C to alter
+:set ignorecase
+"Highlight search results
 :set hlsearch
+"But enable myself to clear the highlights from previous search
+:nnoremap <silent> <esc> :noh<CR><esc>
+" get var for .vim directory location, setting ENVVAR($VIMHOME) didn't work
+ if has('win32') || has ('win64')
+        let g:vimhome=$VIM."/vimfiles"
+    else
+        let g:vimhome=$HOME."/.vim"
+	endif
+" Persistent undo
+:set undofile
+" Into own directory so as not to clutter up projects
+:exec("set undodir=".g:vimhome."/undos")
 "
 "Make CapsLock <-> Esc only when in vim
 " "Not currently used -- switched permanently in xkbmap options
@@ -39,11 +52,6 @@ set hidden
 "	execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 "endif
 
- if has('win32') || has ('win64')
-        let g:vimhome=$VIM."/vimfiles"
-    else
-        let g:vimhome=$HOME."/.vim"
-	endif
 
 "Reload current active ftplugin on .vimrc load for quick plugin editing
 
@@ -123,7 +131,14 @@ Plugin 'embear/vim-localvimrc'
 Plugin 'ap/vim-templates'
 "Recent file list
 Plugin 'yegappan/mru'
+"END SWAPFILE TYRANNY
+Plugin 'gioele/vim-autoswap'
+"" BEGIN Damian Conway lecture inclusions
+"move visual areas around
+Plugin 'gavinbeatty/dragvisuals.vim'
+Plugin 'nixon/vim-vmath'
 call vundle#end()
+"" END Damian Conway block
 "Airline config
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
@@ -294,15 +309,19 @@ command! -nargs=1 FindFile call FindFiles(<q-args>)
 "Differentiate tabs from spaces
 " set listchars=eol:\,tab:│i,space:·,trail:!
 :set listchars=tab:│﮲,extends:›,precedes:‹,nbsp:·,trail:·
+:set list
 :hi SpecialKey ctermbg=230 ctermfg=gray
 let g:loaded_togglebg=1
 "Write to readonly file
 :call SetupCommandAlias('sudow','w !sudo tee %')
 " Load separate keybindings file
 "
-:source ~/.vim/keys.vim
+:source ~/.vim/extras/keys.vim
 " Conceal replacement patterns also offloaded into another file for size
 "
-:source ~/.vim/conceal.vim
+:source ~/.vim/extras/conceal.vim
+" Testing stash for new commands
+"
+:source ~/.vim/extras/main.vim
 "Ftplugin source on end to allow global variables
 filetype plugin indent on
